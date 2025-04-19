@@ -44,11 +44,11 @@ const styles = StyleSheet.create({
     // overflow: 'hidden',
     // paddingTop: 60,
     // backgroundColor:'blue'
-    objectFit:'fill'
+    // objectFit:'cover'
   },
   doctor: {
     width: '102%',
-    height: '101%',
+    height: '105%',
   },
 
   

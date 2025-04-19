@@ -24,42 +24,36 @@ import SignUpScreen from "./components/SignUp";
 import SignUpDocScreen from "./components/SignUpDoctor";
 import EmergencyDoctor from "./components/Emergency";
 import BottomNavigator from "./components/BottomNavigator";
+import OtpScreen from "./components/OTP";
+import EmergencyTabs from "./components/EmergencyTabs";
+
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <>
-      {/* <SignUpScreen/> */}
-      {/* <SignInScreen/> */}
-
+      
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Bottom Navi"
+          initialRouteName="Get Started"
           screenOptions={{ headerShown: false }}
         >
-          <Stack.Screen name="Bottom Navi" component={BottomNavigator} />
           <Stack.Screen name="Get Started" component={GetStarted} />
           <Stack.Screen name="Home1" component={StartingScreen} />
           <Stack.Screen name="PatientSignUp" component={SignUpScreen} />
           <Stack.Screen name="DoctorSignUp" component={SignUpDocScreen} />
-          <Stack.Screen name="EmergencyForm" component={EmergencyDoctor} />
           <Stack.Screen name="SignIn" component={SignInScreen} />
           <Stack.Screen name="InstantDoctor" component={DoctorListScreen} />
           <Stack.Screen name="BookAppoinment" component={BookAppointment} />
+          <Stack.Screen name="OTP" component={OtpScreen}/>
+          <Stack.Screen name="EmergencyForm" component={EmergencyTabs} />
+          <Stack.Screen name="About" component={About}/>
+          <Stack.Screen name="ChatwithDoc" component={ChatDrScreen}/>
+          <Stack.Screen name="PatientHome" component={HomePage}/>
         </Stack.Navigator>
       </NavigationContainer>
-
-      {/* <HomePage/> */}
-      {/* // <ChatDrScreen/>
-    // <About/>
-    // <StartingScreen/>
-    // <LoadingScreen/>
-    // <Prescription/>
-    // <ChatScreen/> screen 5
-    // <ProfileScreen/> Screen4
-    // <BookAppointment/> Screen3
-    // <DoctorListScreen/> Screen 2 */}
+     
     </>
   );
 }

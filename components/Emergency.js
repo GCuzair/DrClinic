@@ -47,7 +47,7 @@ const DoctorCard = ({ doctor, isSelected, onPress }) => {
   );
 };
 
-const EmergencyDoctor = () => {
+const EmergencyDoctor = ( {navigation} ) => {
   const [selectedId, setSelectedId] = useState(null);
 
   return (
@@ -80,7 +80,8 @@ const EmergencyDoctor = () => {
           <DoctorCard
             doctor={item}
             isSelected={selectedId === item.id}
-            onPress={() => setSelectedId(item.id)}
+            onPress ={() => navigation.navigate('About')}
+            // onPress={() => setSelectedId(item.id)}
           />
         )}
       />
@@ -174,8 +175,8 @@ const styles = StyleSheet.create({
     height:110
   },
   selectedCard: {
-    borderWidth: 2,
-    borderColor: '#0099FF',
+    // borderWidth: 2,
+    // borderColor: '#0099FF',
   },
   image: {
     width: 60,

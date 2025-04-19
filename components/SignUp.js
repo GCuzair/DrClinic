@@ -93,7 +93,8 @@ export default function SignUpScreen({navigation}) {
       </View>
       {/* Sign Up Button */}
       <View style={styles.bottom}>
-        <Pressable style={styles.signUpButton}>
+        <Pressable style={styles.signUpButton}
+        onPress={() => navigation.navigate('OTP')}>
           <Text style={styles.signUpText}>Sign Up</Text>
         </Pressable>
 

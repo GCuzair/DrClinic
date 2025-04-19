@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
-
-export default function About() {
+import { StatusBar } from 'expo-status-bar';
+export default function About({navigation}) {
   return (
     <ScrollView style={styles.container}>
+      <StatusBar style="dark" translucent={false} />
       <View style= {styles.header}>
         <Ionicons name="chevron-back-outline" size={24} color="black" style={styles.headericon}/>        
       <Text style={styles.headerText}>My Appointment</Text>
@@ -34,7 +35,8 @@ export default function About() {
       </View>
 
       {/* Button */}
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button}
+      onPress={() => navigation.navigate('ChatwithDoc')}>
         <Text style={styles.buttonText}>Start Chat</Text>
       </TouchableOpacity>
     </ScrollView>
