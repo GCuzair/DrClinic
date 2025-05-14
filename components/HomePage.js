@@ -8,11 +8,11 @@ import {
   View,
   Pressable,
 } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import { NavigationContainer } from "@react-navigation/native";
+// import { NavigationContainer } from "@react-navigation/native";
 
-import AppNavigator from "./BottomNavigator";
+// import AppNavigator from "./BottomNavigator";
 export default function HomePage({ navigation }) {
   return (
     <View style={styles.container}>
@@ -43,7 +43,7 @@ export default function HomePage({ navigation }) {
       <View style={styles.cardsContainer}>
         <View style={styles.card}>
           <Pressable onPress={() => navigation.navigate("InstantDoctor")}>
-            <FontAwesome name="user-md" size={24} color="black" />
+            <FontAwesome name="user-md" size={24} color="black" style={styles.icon}/>
             <Text style={styles.cardTitle}>Instant Doctor</Text>
             <Text style={styles.cardSubtitle}>
               GP, Psychologists & Nutritionists
@@ -52,7 +52,7 @@ export default function HomePage({ navigation }) {
         </View>
         <View style={styles.card}>
           <Pressable onPress={() => navigation.navigate("BookAppoinment")}>
-            <FontAwesome name="stethoscope" size={24} color="black" />
+            <FontAwesome name="stethoscope" size={24} color="black" style={styles.icon}/>
             <Text style={styles.cardTitle}>Book Appointment</Text>
             <Text style={styles.cardSubtitle}>
               Book a doctor for your consultation
@@ -63,7 +63,7 @@ export default function HomePage({ navigation }) {
       <View style={styles.cardsContainer}>
         <View style={styles.card}>
           <Pressable onPress={() => navigation.navigate("InstantDoctor")}>
-            <FontAwesome name="user-md" size={24} color="black" />
+            <FontAwesome name="user-md" size={24} color="black" style={styles.icon} />
             <Text style={styles.cardTitle}>Instant Doctor</Text>
             <Text style={styles.cardSubtitle}>
               GP, Psychologists & Nutritionists
@@ -72,7 +72,7 @@ export default function HomePage({ navigation }) {
         </View>
         <View style={styles.card}>
           <Pressable onPress={() => navigation.navigate("BookAppoinment")}>
-            <FontAwesome name="stethoscope" size={24} color="black" />
+            <FontAwesome name="stethoscope" size={24} color="black" style={styles.icon} />
             <Text style={styles.cardTitle}>Book Appointment</Text>
             <Text style={styles.cardSubtitle}>
               Book a doctor for your consultation
@@ -80,7 +80,7 @@ export default function HomePage({ navigation }) {
           </Pressable>
         </View>
       </View>
-      <AppNavigator />
+      {/* <AppNavigator /> */}
       <StatusBar style="auto" />
     </View>
   );
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 26,
   },
   header: { marginTop: 15 },
-  title: { fontSize: 28, fontWeight: "600", fontFamily: "gilroy-semibold" },
+  title: { fontSize: 28, fontWeight: "600"},
   subtitle: { color: "gray", marginTop: 10 },
   notificationIcon: { position: "absolute", top: 2, right: 10 },
   imageContainer: { position: "relative", marginTop: 20, marginBottom: 40 },
@@ -114,13 +114,16 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "space-between",
   },
+  icon:{
+    alignSelf:'center'
+  },
   card: {
     width: "47%",
     backgroundColor: "white",
     padding: 18,
     borderRadius: 10,
     alignItems: "center",
-    marginTop: 20,
+    marginTop:20,
     borderWidth: 1,
     borderColor: "#E5E7EB",
     // **Shadow for Depth Effect**
@@ -136,6 +139,8 @@ const styles = StyleSheet.create({
     color: "#2FC1FF",
     marginTop: 10,
     marginBottom: 10,
+    alignSelf:'center'
+
   },
   cardSubtitle: {
     fontSize: 8,

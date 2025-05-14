@@ -2,10 +2,10 @@ import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform, Pressable } from 'react-native';
 
 
-const OtpScreen = ({navigation}) => {
+const OtpScreen = ({route,navigation}) => {
   const [otp, setOtp] = useState(['', '', '', '']);
   const inputs = useRef([]);
-
+  const email = route.params?.email
   const handleOtpChange = (index, value) => {
     const newOtp = [...otp];
     newOtp[index] = value;

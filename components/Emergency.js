@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Image, FlatList, TouchableOpacity } from 'react-native';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'react-native';
-import AppNavigator from './BottomNavigator';
+// import AppNavigator from './BottomNavigator';
 
 const doctors = [
   {

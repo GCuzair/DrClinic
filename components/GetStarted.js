@@ -7,7 +7,8 @@ import {
   ImageBackground,
   TouchableOpacity,
   SafeAreaView,
-  Pressable
+  Pressable,
+  Dimensions
 } from 'react-native';
 import { StatusBar } from 'react-native';
 
@@ -16,7 +17,8 @@ export default function GetStarted({ navigation }) {
   return (
     
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#3AB4F2" />
+      
+      <StatusBar barStyle="dark-content" backgroundColor="#3AB4F2" />
 
       <View style={styles.topSection}>
         <Image source={require('../assets/images/dr.jpg')} style={styles.doctor} resizeMode="contain" />
@@ -47,8 +49,8 @@ const styles = StyleSheet.create({
     // objectFit:'cover'
   },
   doctor: {
-    width: '102%',
-    height: '105%',
+    width: Dimensions.get("screen").width,
+    // height: '105%',
   },
 
   

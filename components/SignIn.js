@@ -10,14 +10,14 @@ import {
   Pressable,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 
-export default function SignInScreen() {
+export default function SignInScreen({navigation}) {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const naviagteHandler = ()=>{
-    console.log("called");
-    navigation.navigate("bottomNavi")
+    // console.log("called");
+    // navigation.navigate("bottomNavi")
     
   }
   return (

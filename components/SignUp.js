@@ -6,16 +6,47 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  SafeAreaView,
-  CheckBox, // or use from react-native-paper or expo-checkbox
-  Platform,
   Pressable,
+  Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { API } from "../utils/data-service";
 
-export default function SignUpScreen({navigation}) {
+export default function SignUpScreen({ navigation }) {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignUp = async () => {
+    if (!name || !email || !phone || !password) {
+      Alert.alert("Error", "Please fill in all fields");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API}/api/auth/register-paitent`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, phone, password }),
+      });
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        Alert.alert("Success", "OTP sent to your email");
+        navigation.replace("OTP", { email }); // Pass email to OTP screen
+      } else {
+        Alert.alert("Error", data.message || "Something went wrong");
+      }
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Error", "Failed to connect to the server");
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -23,9 +54,7 @@ export default function SignUpScreen({navigation}) {
         <Image
           source={require("../assets/images/Logo.png")}
           style={styles.logo}
-          // resizeMode="contain"
         />
-
         <Text style={styles.title}>Sign Up</Text>
       </View>
 
@@ -35,41 +64,41 @@ export default function SignUpScreen({navigation}) {
           placeholder="Jan Kowalski"
           placeholderTextColor="#ccc"
           style={styles.input}
+          value={name}
+          onChangeText={setName}
         />
 
-        {/* Email */}
         <Text style={styles.label}>Email</Text>
-
         <TextInput
           placeholder="patient@self.com"
           placeholderTextColor="#ccc"
           style={styles.input}
           keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
         />
 
-        {/* Phone */}
         <Text style={styles.label}>Phone Number</Text>
-
         <TextInput
           placeholder="(555) 555-1234"
           placeholderTextColor="#ccc"
           style={styles.input}
           keyboardType="phone-pad"
+          value={phone}
+          onChangeText={setPhone}
         />
 
-        {/* Password */}
         <Text style={styles.label}>Password</Text>
-
         <View style={styles.passwordContainer}>
           <TextInput
-            placeholder="min 8 cyfr"
+            placeholder="min 8 characters"
             placeholderTextColor="#ccc"
             secureTextEntry={!passwordVisible}
             style={styles.passwordInput}
+            value={password}
+            onChangeText={setPassword}
           />
-          <TouchableOpacity
-            onPress={() => setPasswordVisible(!passwordVisible)}
-          >
+          <TouchableOpacity onPress={() => setPasswordVisible(!passwordVisible)}>
             <Ionicons
               name={passwordVisible ? "eye-off-outline" : "eye-outline"}
               size={20}
@@ -78,33 +107,22 @@ export default function SignUpScreen({navigation}) {
           </TouchableOpacity>
         </View>
 
-        {/* Terms Agreement */}
         <View style={styles.checkboxContainer}>
-          {/* <CheckBox
-          value={isChecked}
-          onValueChange={setIsChecked}
-          tintColors={{ true: '#2DB5FF', false: '#ccc' }}
-        /> */}
           <Text style={styles.checkboxText}>
             I agree with Terms and{" "}
             <Text style={styles.link}>Privacy Policy</Text>
           </Text>
         </View>
       </View>
-      {/* Sign Up Button */}
+
       <View style={styles.bottom}>
-        <Pressable style={styles.signUpButton}
-        onPress={() => navigation.navigate('OTP')}>
+        <Pressable style={styles.signUpButton} onPress={handleSignUp}>
           <Text style={styles.signUpText}>Sign Up</Text>
         </Pressable>
 
-        
         <Text style={styles.footerText}>
-          Already have account?{" "}
-          <Text
-            style={styles.link}
-            onPress={() => navigation.navigate("SignIn")}
-          >
+          Already have an account?{" "}
+          <Text style={styles.link} onPress={() => navigation.navigate("SignIn")}>
             Sign In
           </Text>
         </Text>
@@ -112,16 +130,15 @@ export default function SignUpScreen({navigation}) {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
     paddingHorizontal: 30,
-    //   justifyContent: 'center',
   },
-
   bottom: {
-    marginTop: 120,
+    marginTop: 20,
   },
   header: {
     marginTop: 50,
@@ -143,6 +160,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 28,
     color: "#000",
+  },
+  inputContainer: {
+    marginTop: 10,
   },
   input: {
     backgroundColor: "#F3F3F3",
